@@ -6,20 +6,23 @@
 
 :root {
   background-color: #e5e5e5;
-  --main-accent-color: 33, 150, 243;
-  --prima-c: rgb(var(--main-accent-color));
+  --prima-c-values: 33, 150, 243;
+  --prima-c: rgb(var(--prima-c-values));
   --prima-c2: #188ce8;
   --gray-bg: 47, 48, 58;
   --light-gray: #f5f4fa;
   --light-gray2: #afb1b8;
   --light-gray3: #eceaef;
   --gray-c: rgba(47, 48, 58, 0.8);
-  --white-c: #fff;
+  --white-c-values: 255, 255, 255;
+  --white-c: rgb(var(--white-c-values));
   --black-c: #000;
   --border-c1: #ececec;
   --border-c2: #eee;
-  --text-c-1: #212121;
-  --text-c-2: #757575;
+  --text-c-1-values: 21, 21, 21;
+  --text-c-1: rgb(var(--text-c-1-values));
+  --text-c-2-values: 117, 117, 117;
+  --text-c-2: rgb(var(--text-c-2-values));;
   --spacer: 30px;
   --anim-speed: 250ms;
   --anim-fn: cubic-bezier(0.4, 0, 0.2, 1);
@@ -62,10 +65,14 @@ button[type="button"] {
 
 .hidden {
   position: absolute;
-  left: -10000px;
-  top: auto;
   width: 1px;
   height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
   overflow: hidden;
 }
 
@@ -404,7 +411,8 @@ header .address a {
     fill var(--anim-speed) var(--anim-fn);
 }
 
-.clients-section a:hover {
+.clients-section a:hover,
+.clients-section a:focus {
   fill: var(--prima-c);
   outline-color: var(--prima-c);
 }
@@ -414,8 +422,18 @@ header .address a {
 
 footer {
   padding: 60px 0;
-  position: relative;
   background-color: rgb(var(--gray-bg));
+}
+
+footer div.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.footer-left-part {
+  width: 231px;
+  margin-right: 70px;
 }
 
 footer .logo {
@@ -448,12 +466,10 @@ footer address a {
 }
 
 .join-socials {
-  position: absolute;
-  top: 72px;
-  left: 516px;
+  margin-right: auto;
 }
 
-.join-socials > div {
+.join-socials > p {
   margin-bottom: 20px;
   font-weight: 700;
   line-height: calc(16 / 14);
@@ -524,13 +540,14 @@ footer address a {
 
 /* Single project */
 
-.project {
+.project > a {
+  display: block;
   width: 370px;
-  background-color: var(--white-c);
   transition: box-shadow var(--anim-speed) var(--anim-fn);
 }
 
-.project:hover {
+.project > a:hover,
+.project > a:focus {
   box-shadow: 0px 1px 1px rgba(0,0,0,.12), 0px 4px 4px rgba(0,0,0,.06), 1px 4px 6px rgba(0,0,0,.16);
 }
 
@@ -551,7 +568,7 @@ footer address a {
   right: 0;
   padding: 63px 24px;
 
-  background-color: rgba(var(--main-accent-color), 0.9);
+  background-color: rgba(var(--prima-c-values), 0.9);
   color: var(--white-c);
   
   font-size: 18px;
@@ -595,7 +612,9 @@ footer address a {
 }
 
 
-/* Modal window */
+
+
+/* ---------------------- Modal window ----------------------- */
 
 .backdrop {
   position: fixed;
@@ -629,6 +648,7 @@ footer address a {
   background-color: var(--white-c);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
+
   transition: transform var(--anim-speed) var(--anim-fn);
 }
 
